@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beranda - Pemilihan Ketua OSIS 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+      .blink {
+        animation: blink 1.5s infinite;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-indigo-900 via-gray-900 to-blue-900 min-h-screen text-white flex flex-col">
+
+    <!-- Header Logo -->
+    <header class="flex justify-center gap-6 py-6">
+      <img src="assets/images/logo-sekolah.png" alt="Logo Sekolah" class="w-16 h-16 object-contain" />
+      <img src="assets/images/logo-osis.png" alt="Logo OSIS" class="w-16 h-16 object-contain" />
+      <img src="assets/images/logo-mpk.png" alt="Logo MPK" class="w-16 h-16 object-contain" />
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow px-6 text-center max-w-3xl mx-auto">
+
+      <h1 class="text-4xl font-bold mb-4">Pemilihan Ketua OSIS 2025</h1>
+      <p class="text-lg mb-6 text-gray-200">Gunakan hak suaramu untuk memilih pemimpin terbaik bagi kita semua!</p>
+
+      <!-- Countdown Section -->
+      <section class="bg-white/10 backdrop-blur-md rounded-xl p-6 mb-8 shadow-lg">
+        <h2 class="text-2xl font-semibold mb-2">Waktu Menuju Pemungutan Suara</h2>
+        <div id="countdown" class="text-3xl font-mono font-bold text-yellow-300 mt-2"></div>
+      </section>
+
+      <!-- Tujuan -->
+      <section class="bg-white/10 backdrop-blur-md rounded-xl p-6 mb-8 shadow-lg text-left">
+        <h2 class="text-2xl font-semibold mb-2">Tujuan Pemilihan</h2>
+        <p class="text-sm text-white/90">
+          Pemilihan ini bertujuan untuk memilih Ketua OSIS yang mampu memimpin, menjadi teladan, dan membawa OSIS ke arah yang lebih baik.
+        </p>
+      </section>
+      <!-- Timeline -->
+<section class="bg-white/10 backdrop-blur-md rounded-xl p-6 mb-12 shadow-lg text-left">
+  <h2 class="text-2xl font-semibold mb-4 text-center">Timeline Pemilihan</h2>
+  <ol class="relative border-l border-gray-400 ml-4">
+    <li class="mb-5 ml-4">
+      <div class="absolute w-3 h-3 bg-blue-400 rounded-full -left-1.5 border border-white"></div>
+      <h3 class="text-lg font-semibold">1–5 Agustus 2025</h3>
+      <p class="text-sm text-white/80">Pendaftaran Kandidat</p>
+    </li>
+    <li class="mb-5 ml-4">
+      <div class="absolute w-3 h-3 mt-2 bg-orange-400 rounded-full -left-1.5 border border-white blink"></div>
+      <h3 class="text-lg font-semibold">6–10 Agustus 2025</h3>
+      <p class="text-sm text-white/80">Masa Kampanye</p>
+    </li>
+    <li class="mb-5 ml-4">
+      <div class="absolute w-3 h-3 mt-2 bg-gray-400 rounded-full -left-1.5 border border-white"></div>
+      <h3 class="text-lg font-semibold">11 Agustus 2025</h3>
+      <p class="text-sm text-white/80">Hari Pemungutan Suara</p>
+    </li>
+    <li class="ml-4">
+      <div class="absolute w-3 h-3 mt-2 bg-gray-400 rounded-full -left-1.5 border border-white"></div>
+      <h3 class="text-lg font-semibold">12 Agustus 2025</h3>
+      <p class="text-sm text-white/80">Pengumuman Hasil</p>
+    </li>
+  </ol>
+</section>
+
+
+      <!-- Tombol Aksi -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+        <a href="kandidat.html" class="bg-white text-indigo-800 font-semibold py-2 px-6 rounded-xl shadow hover:bg-indigo-100 transition">
+          Lihat Kandidat
+        </a>
+        <a href="vote.html" class="bg-white text-indigo-800 font-semibold py-2 px-6 rounded-xl shadow hover:bg-indigo-100 transition">
+          Mulai Memilih
+        </a>
+        <a href="result.html" class="bg-white text-indigo-800 font-semibold py-2 px-6 rounded-xl shadow hover:bg-indigo-100 transition">
+          Lihat Hasil
+        </a>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-sm text-white text-center py-4 bg-black bg-opacity-20 w-full">
+      &copy; 2025 SMKN 1 Majalaya - Udeezz. All rights reserved.
+    </footer>
+
+    <!-- JS Countdown -->
+    <script>
+      const countdown = document.getElementById("countdown");
+      const targetDate = new Date("2025-08-11T00:00:00").getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          countdown.textContent = "Pemungutan suara sedang berlangsung!";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdown.textContent = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+      }
+
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vote - Pemilihan Ketua OSIS 2025</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-gray-900 to-blue-900 text-white min-h-screen flex flex-col relative">
+
+  <!-- Header -->
+  <header class="text-center px-4 pt-8 pb-4">
+    <h1 class="text-4xl font-bold mb-1">Formulir Pemungutan Suara</h1>
+    <p class="text-sm text-gray-300">Pilih salah satu pasangan calon ketua & wakil ketua OSIS</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow px-6 pb-32 max-w-5xl mx-auto">
+    <form id="voteForm" class="space-y-6 mt-8">
+
+      <!-- PASLON TEMPLATE -->
+      <div class="space-y-6">
+        
+        <!-- Paslon 1 -->
+        <div class="bg-white/10 backdrop-blur-md rounded-xl px-6 py-6 shadow-lg flex items-center justify-between gap-6">
+          <div class="flex items-center gap-6">
+            <img src="assets/images/paslon1.jpg" class="w-24 h-24 rounded-xl object-cover border-4 border-white/20" />
+            <div>
+              <h2 class="text-xl font-bold">Arga & Sinta</h2>
+              <p class="text-sm italic text-gray-300 mb-2">Jurusan RPL</p>
+              <button type="button"
+                onclick="showVisiMisi('Arga & Sinta', 'Menjadikan OSIS sebagai organisasi yang aktif, inspiratif, dan berintegritas.', [
+                  'Meningkatkan partisipasi siswa dalam kegiatan OSIS.',
+                  'Mengembangkan program kerja yang inovatif dan berdampak.',
+                  'Menjalin kerjasama antar organisasi siswa.'
+                ])"
+                class="text-sm bg-white text-indigo-900 px-4 py-1 rounded-full hover:bg-indigo-100 transition">
+                Lihat Visi & Misi
+              </button>
+            </div>
+          </div>
+          <input type="radio" name="paslon" value="paslon1" class="w-6 h-6 accent-indigo-500 cursor-pointer" onclick="choose('Arga & Sinta')" />
+        </div>
+
+        <!-- Paslon 2 -->
+        <div class="bg-white/10 backdrop-blur-md rounded-xl px-6 py-6 shadow-lg flex items-center justify-between gap-6">
+          <div class="flex items-center gap-6">
+            <img src="assets/images/paslon2.jpg" class="w-24 h-24 rounded-xl object-cover border-4 border-white/20" />
+            <div>
+              <h2 class="text-xl font-bold">Bima & Tiara</h2>
+              <p class="text-sm italic text-gray-300 mb-2">Jurusan TKJ</p>
+              <button type="button"
+                onclick="showVisiMisi('Bima & Tiara', 'Mewujudkan OSIS yang modern, terbuka, dan adaptif terhadap perubahan zaman.', [
+                  'Digitalisasi sistem kerja OSIS.',
+                  'Meningkatkan transparansi kegiatan dan anggaran.',
+                  'Mendorong kreativitas dan inovasi siswa.'
+                ])"
+                class="text-sm bg-white text-indigo-900 px-4 py-1 rounded-full hover:bg-indigo-100 transition">
+                Lihat Visi & Misi
+              </button>
+            </div>
+          </div>
+          <input type="radio" name="paslon" value="paslon2" class="w-6 h-6 accent-indigo-500 cursor-pointer" onclick="choose('Bima & Tiara')" />
+        </div>
+
+        <!-- Paslon 3 -->
+        <div class="bg-white/10 backdrop-blur-md rounded-xl px-6 py-6 shadow-lg flex items-center justify-between gap-6">
+          <div class="flex items-center gap-6">
+            <img src="assets/images/paslon3.jpg" class="w-24 h-24 rounded-xl object-cover border-4 border-white/20" />
+            <div>
+              <h2 class="text-xl font-bold">Danu & Fira</h2>
+              <p class="text-sm italic text-gray-300 mb-2">Jurusan Akuntansi</p>
+              <button type="button"
+                onclick="showVisiMisi('Danu & Fira', 'Menjadikan OSIS sebagai wadah pembinaan karakter dan prestasi siswa.', [
+                  'Mengadakan kegiatan sosial dan pengembangan diri.',
+                  'Menjalin komunikasi yang baik antara siswa dan guru.',
+                  'Meningkatkan penghargaan terhadap siswa berprestasi.'
+                ])"
+                class="text-sm bg-white text-indigo-900 px-4 py-1 rounded-full hover:bg-indigo-100 transition">
+                Lihat Visi & Misi
+              </button>
+            </div>
+          </div>
+          <input type="radio" name="paslon" value="paslon3" class="w-6 h-6 accent-indigo-500 cursor-pointer" onclick="choose('Danu & Fira')" />
+        </div>
+
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center mt-10">
+        <button type="submit" class="bg-white text-indigo-800 font-semibold py-2 px-6 rounded-xl shadow hover:bg-indigo-100 transition">
+          Kirim Suara
+        </button>
+        <p id="alert" class="text-sm text-red-400 mt-2 hidden">Silakan pilih salah satu pasangan terlebih dahulu.</p>
+      </div>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="absolute bottom-0 w-full text-center text-sm text-white py-4 bg-black bg-opacity-20">
+    &copy; 2025 SMKN 1 Majalaya — Divisi TIK OSIS
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
+    <div class="bg-white text-black max-w-md w-full mx-4 p-6 rounded-lg shadow-xl">
+      <h3 id="modalTitle" class="text-xl font-bold mb-2"></h3>
+      <p class="font-semibold">Visi:</p>
+      <p id="modalVisi" class="mb-2 text-sm"></p>
+      <p class="font-semibold">Misi:</p>
+      <ul id="modalMisi" class="list-disc list-inside text-sm mb-4"></ul>
+      <button onclick="closeModal()" class="bg-indigo-600 text-white px-4 py-1 rounded hover:bg-indigo-700">
+        Tutup
+      </button>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function showVisiMisi(nama, visi, misi) {
+      document.getElementById('modalTitle').textContent = nama;
+      document.getElementById('modalVisi').textContent = visi;
+      const misiList = document.getElementById('modalMisi');
+      misiList.innerHTML = '';
+      misi.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        misiList.appendChild(li);
+      });
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function choose(nama) {
+      alert(`Kamu memilih ${nama}`);
+    }
+
+    document.getElementById('voteForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const selected = document.querySelector('input[name="paslon"]:checked');
+      const alertText = document.getElementById('alert');
+      if (!selected) {
+        alertText.classList.remove('hidden');
+        return;
+      }
+
+      alertText.classList.add('hidden');
+      const nama = selected.parentElement.querySelector('h2').textContent;
+      alert(`Terima kasih! Suara Anda untuk ${nama} telah dicatat.`);
+    });
+  </script>
+
+</body>
+</html>
