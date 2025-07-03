@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Pemilih</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-gray-900 to-blue-900 text-white min-h-screen flex items-center justify-center px-4">
+
+  <div class="max-w-md w-full bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-lg text-center">
+    <h1 class="text-3xl font-bold mb-6">Login Pemilih</h1>
+    <p class="text-sm text-gray-300 mb-4">Masukkan NIS dan Nama Lengkap sesuai data</p>
+
+    <input type="text" id="nis" placeholder="Nomor Induk Siswa (NIS)"
+      class="w-full text-black px-4 py-2 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+
+    <input type="text" id="nama" placeholder="Nama Lengkap"
+      class="w-full text-black px-4 py-2 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+
+    <button onclick="login()"
+      class="bg-white text-indigo-900 font-semibold w-full py-2 rounded-md hover:bg-indigo-100 transition">
+      Login
+    </button>
+
+    <p id="error" class="text-red-400 text-sm mt-4 hidden">NIS atau Nama tidak valid.</p>
+  </div>
+
+  <footer class="absolute bottom-0 w-full text-center text-sm text-white py-4 bg-black bg-opacity-20">
+    &copy; 2025 SMKN 1 Majalaya — Udeezz. All rights reserved.
+  </footer>
+
+  <script>
+    // Simulasi "database" siswa
+    const database = [
+      { nis: "222310106", nama: "Yudhistira" },
+      { nis: "23040102", nama: "Sinta Aulia" },
+      { nis: "23040103", nama: "Bima Ramadhan" },
+      { nis: "23040104", nama: "Tiara Nuraini" },
+      { nis: "23040105", nama: "Danu Maulana" }
+    ];
+
+    function login() {
+      const nis = document.getElementById("nis").value.trim();
+      const nama = document.getElementById("nama").value.trim().toLowerCase();
+      const errorText = document.getElementById("error");
+
+      const user = database.find(s =>
+        s.nis === nis && s.nama.toLowerCase() === nama
+      );
+
+      if (user) {
+        // Simpan token login
+        const token = btoa(`${nis}:${nama}`);
+        localStorage.setItem("token", token);
+        window.location.href = "vote.html";
+      } else {
+        errorText.classList.remove("hidden");
+      }
+    }
+  </script>
+</body>
+</html>

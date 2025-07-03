@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vote - Pemilihan Ketua OSIS 2025</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "auth.html";
+  }
+</script>
+<script>
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "auth.html";
+  }
+</script>
+
+
 </head>
 <body class="bg-gradient-to-br from-indigo-900 via-gray-900 to-blue-900 text-white min-h-screen flex flex-col relative">
 
@@ -12,6 +26,9 @@
   <header class="text-center px-4 pt-8 pb-4">
     <h1 class="text-4xl font-bold mb-1">Formulir Pemungutan Suara</h1>
     <p class="text-sm text-gray-300">Pilih salah satu pasangan calon ketua & wakil ketua OSIS</p>
+    <div class="text-right mb-4">
+</div>
+
   </header>
 
   <!-- Main Content -->
